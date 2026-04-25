@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Muhammad's Gurudwara — Rolling New Delhi, Thorold ON</title>
+<meta name="description" content="Thorold's premier Gurudwara, banquet hall, and unlicensed Tim Hortons franchise.">
+<style>
+  :root {
+    --gold: #c9a14a;
+    --gold-bright: #e8c66b;
+    --gold-deep: #8a6a23;
+    --bg: #1a1612;
+    --bg-soft: #221c16;
+    --cream: #f4ead5;
+    --ink: #0d0a07;
+    --tims-red: #c8102e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--cream);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+
+  /* === HERO === */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('exterior.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .hero-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(13,10,7,0.65) 0%, rgba(13,10,7,0.5) 40%, rgba(13,10,7,0.95) 100%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+  .ornament-row {
+    font-size: 13px; letter-spacing: 16px;
+    color: var(--gold); margin-bottom: 20px; opacity: 0.85;
+  }
+  .hero-logo {
+    width: clamp(260px, 60vw, 460px);
+    margin: 0 auto 24px;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.7));
+  }
+  .subtitle {
+    font-size: clamp(15px, 3.5vw, 22px);
+    color: var(--cream); letter-spacing: 3px;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+  }
+  .tagline {
+    font-style: italic;
+    color: var(--gold-bright);
+    font-size: clamp(13px, 3vw, 16px);
+    letter-spacing: 1px; margin-bottom: 26px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+  }
+  .location {
+    font-size: 12px; color: var(--cream);
+    letter-spacing: 3px; text-transform: uppercase;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    padding: 10px 20px; display: inline-block;
+    background: rgba(13,10,7,0.5);
+  }
+
+  /* === SPONSOR BAR === */
+  .sponsor-bar {
+    background: var(--ink);
+    padding: 14px 24px; text-align: center;
+    border-top: 1px solid var(--gold-deep);
+    border-bottom: 1px solid var(--gold-deep);
+    color: var(--gold);
+    font-size: 11px; letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+  .sponsor-bar strong { color: var(--tims-red); letter-spacing: 2px; }
+
+  /* === SECTIONS === */
+  section {
+    padding: 60px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 11px; letter-spacing: 6px;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
+    font-size: clamp(38px, 7vw, 56px);
+    color: var(--gold-bright);
+    margin-bottom: 20px;
+    font-weight: normal; line-height: 1;
+  }
+  p { margin-bottom: 16px; font-size: 17px; }
+
+  /* === ABOUT === */
+  .about {
+    background: linear-gradient(180deg, #0d0a07, #1a1612);
+    border-bottom: 1px solid var(--gold-deep);
+  }
+
+  /* === SIGNPOST === */
+  .signpost { background: var(--bg-soft); }
+  .signpost-grid {
+    display: grid; grid-template-columns: 1fr; gap: 30px;
+    align-items: center; margin-top: 28px;
+  }
+  @media (min-width: 800px) {
+    .signpost-grid { grid-template-columns: 1.1fr 1fr; }
+  }
+  .photo {
+    width: 100%;
+    border: 1px solid var(--gold-deep);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  }
+  .photo-caption {
+    text-align: center;
+    color: rgba(244,234,213,0.6);
+    font-size: 12px; font-style: italic;
+    margin-top: 10px; letter-spacing: 1px;
+  }
+
+  /* === PICNIC === */
+  .picnic {
+    background: linear-gradient(180deg, #1a1612, #0d0a07);
+    border-top: 1px solid var(--gold-deep);
+    border-bottom: 1px solid var(--gold-deep);
+    text-align: center;
+  }
+  .picnic-frame {
+    margin: 24px auto 0;
+    padding: 12px;
+    background: var(--bg-soft);
+    border: 1px solid var(--gold);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+    max-width: 900px;
+  }
+
+  /* === BYLAW NOTICE === */
+  .notice {
+    background: #f4e4c1;
+    color: #1a1612;
+    padding: 20px 24px;
+    margin: 16px 0;
+    border-left: 6px solid var(--tims-red);
+    font-family: 'Courier New', monospace;
+    font-size: 14px; line-height: 1.5;
+    transform: rotate(-0.3deg);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  }
+  .notice:nth-child(even) { transform: rotate(0.4deg); }
+  .notice strong {
+    display: block; color: var(--tims-red);
+    font-size: 11px; letter-spacing: 2px; margin-bottom: 8px;
+  }
+  .notice .date { float: right; color: #666; font-size: 11px; }
+  .notice .stamp {
+    display: inline-block; margin-top: 10px;
+    padding: 4px 10px;
+    border: 2px solid var(--tims-red);
+    color: var(--tims-red);
+    font-weight: bold; font-size: 11px; letter-spacing: 1px;
+    transform: rotate(-4deg);
+  }
+
+  /* === MENU === */
+  .menu { background: linear-gradient(180deg, #1a1612, #221c16); }
+
+  /* === GAME SECTION === */
+  .game-section {
+    background:
+      radial-gradient(ellipse at top, rgba(200,16,46,0.15), transparent 60%),
+      linear-gradient(180deg, #221c16, #1a1612);
+    border-top: 1px solid var(--gold-deep);
+    border-bottom: 1px solid var(--gold-deep);
+    text-align: center;
+  }
+  .game-cta {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 18px 44px;
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 60%, var(--gold-deep) 100%);
+    color: var(--ink);
+    text-decoration: none;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    border: 2px solid var(--gold-bright);
+    box-shadow:
+      0 6px 0 var(--gold-deep),
+      0 12px 30px rgba(0,0,0,0.6);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .game-cta:hover {
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 var(--gold-deep), 0 8px 20px rgba(0,0,0,0.6);
+  }
+  .game-cta:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 var(--gold-deep), 0 4px 12px rgba(0,0,0,0.6);
+  }
+
+  /* === JM NEWS TICKER === */
+  body { padding-bottom: 40px; } /* space for the fixed ticker */
+  .jm-ticker {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 40px;
+    background: linear-gradient(90deg, var(--tims-red) 0%, #e0182f 50%, var(--tims-red) 100%);
+    border-top: 3px solid var(--gold);
+    overflow: hidden;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 -4px 14px rgba(0,0,0,0.6);
+  }
+  .jm-ticker-label {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0 14px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+    border-right: 3px solid var(--ink);
+    z-index: 2;
+    text-transform: uppercase;
+  }
+  .jm-ticker-track {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: jmTickerScroll 90s linear infinite;
+    padding-left: 100%;
+  }
+  .jm-ticker-item {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: var(--cream);
+    padding: 0 28px;
+    position: relative;
+  }
+  .jm-ticker-item::after {
+    content: '◆';
+    color: var(--gold);
+    position: absolute;
+    right: -5px;
+  }
+  @keyframes jmTickerScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .menu-list { list-style: none; margin-top: 24px; }
+  .menu-list li {
+    display: flex; justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px dotted rgba(201,161,74,0.3);
+    gap: 12px; font-size: 16px;
+  }
+  .menu-list li .item { color: var(--cream); }
+  .menu-list li .item small {
+    display: block; color: rgba(244,234,213,0.5);
+    font-size: 12px; font-style: italic; margin-top: 2px;
+  }
+  .menu-list li .dots {
+    flex: 1; border-bottom: 1px dotted var(--gold-deep);
+    margin: 0 6px; transform: translateY(-4px);
+  }
+  .menu-list li .price-tag {
+    color: var(--gold-bright); font-weight: bold; white-space: nowrap;
+  }
+
+  /* === CONTACT === */
+  .contact {
+    background:
+      radial-gradient(ellipse at center, rgba(201,161,74,0.1), transparent 70%),
+      var(--ink);
+    text-align: center;
+    border-top: 2px solid var(--gold);
+  }
+  .address { font-size: 17px; line-height: 1.8; margin: 24px 0; }
+
+  /* === FOOTER === */
+  footer {
+    background: #0a0805;
+    padding: 30px 24px 24px;
+    text-align: center;
+    border-top: 1px solid var(--gold-deep);
+  }
+  .footer-logo { width: 110px; margin: 0 auto 10px; opacity: 0.9; }
+  footer small {
+    display: block;
+    color: rgba(244,234,213,0.4);
+    font-size: 11px; line-height: 1.6;
+    max-width: 600px; margin: 10px auto 0;
+  }
+  /* === REVIEWS === */
+  .reviews { background: var(--bg-soft); }
+  .review {
+    background: var(--ink);
+    border: 1px solid var(--gold-deep);
+    padding: 20px 22px;
+    margin: 14px 0;
+  }
+  .review.bad { border-color: var(--tims-red); }
+  .stars {
+    color: var(--gold-bright);
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .stars .empty { color: rgba(244,234,213,0.2); }
+  .review.bad .stars { color: var(--tims-red); }
+  .review-text {
+    font-style: italic;
+    font-size: 15px;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .reviewer {
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .review.bad .reviewer { color: var(--tims-red); }
+
+  /* === POPUP === */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+  }
+  .popup-overlay.show { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.8) rotate(-2deg); }
+    to { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+  .popup {
+    background: var(--cream);
+    color: var(--ink);
+    max-width: 480px;
+    width: 100%;
+    border: 6px solid var(--tims-red);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+    position: relative;
+    animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    padding: 24px;
+    text-align: center;
+  }
+  .popup-close {
+    position: absolute;
+    top: 8px; right: 12px;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 10px;
+    font-family: Georgia, serif;
+  }
+  .popup-close:hover { color: var(--tims-red); }
+  .popup img {
+    width: 100%;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+  }
+  .popup h3 {
+    color: var(--tims-red);
+    font-family: 'Brush Script MT', cursive;
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 8px;
+    font-weight: normal;
+  }
+  .popup p {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+  .popup-cta {
+    display: inline-block;
+    background: var(--tims-red);
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-family: Georgia, serif;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s;
+  }
+  .popup-cta:hover { transform: scale(1.05); }
+
+  /* === GAME TOAST (slide-in, bottom-right above ticker) === */
+  .game-toast {
+    position: fixed;
+    bottom: 52px; /* clears the 40px ticker plus a little gap */
+    right: 16px;
+    width: clamp(260px, 90vw, 320px);
+    background: linear-gradient(180deg, #fff8e1 0%, #ffd966 100%);
+    color: var(--ink);
+    border: 3px solid var(--gold-deep);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6), 0 4px 10px rgba(0,0,0,0.4);
+    z-index: 9500;
+    transform: translateX(calc(100% + 30px));
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .game-toast.show {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .game-toast.dismissing {
+    transform: translateX(calc(100% + 30px));
+    opacity: 0;
+  }
+  .game-toast-close {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: var(--gold-deep);
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 8px;
+    font-family: Georgia, serif;
+    z-index: 2;
+  }
+  .game-toast-close:hover { color: var(--tims-red); }
+  .game-toast-inner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 16px 14px 14px;
+  }
+  .game-toast-art {
+    font-size: 44px;
+    line-height: 1;
+    flex-shrink: 0;
+    animation: toastWobble 1.6s ease-in-out infinite;
+    margin-top: 4px;
+  }
+  @keyframes toastWobble {
+    0%, 100% { transform: rotate(-6deg); }
+    50% { transform: rotate(6deg); }
+  }
+  .game-toast-text { flex: 1; min-width: 0; }
+  .game-toast-eyebrow {
+    font-family: Georgia, serif;
+    font-size: 10px;
+    color: var(--tims-red);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+  .game-toast-title {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 22px;
+    color: var(--gold-deep);
+    line-height: 1.05;
+    margin-bottom: 6px;
+  }
+  .game-toast-blurb {
+    font-size: 12px;
+    color: #4a3820;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  .game-toast-cta {
+    display: inline-block;
+    background: var(--gold-deep);
+    color: white;
+    text-decoration: none;
+    padding: 8px 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: Georgia, serif;
+    border-radius: 4px;
+    transition: transform 0.15s, background 0.15s;
+  }
+  .game-toast-cta:hover {
+    background: var(--ink);
+    transform: translateX(2px);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="ornament-row">ੴ ☪ ✡ ☸ ☯</div>
+    <img src="logo.png" alt="John Muhammad's logo" class="hero-logo">
+    <div class="subtitle">GURUDWARA &amp; CONFERENCE CENTRE</div>
+    <div class="tagline">…Beyond Your Spiritual Expectations™</div>
+    <div class="location">Rolling New Delhi · Thorold, ON</div>
+  </div>
+</header>
+
+<!-- SPONSOR BAR -->
+<div class="sponsor-bar">
+  Proudly Sanctified by <strong>Tim Hortons®</strong> · Official Beverage Partner Since 2026
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="section-label">A Word From The Founder</div>
+  <h2>Welcome</h2>
+  <p>John Muhammad's Gurudwara is Thorold's premier multi-purpose spiritual venue, located in the brand-new Rolling New Delhi subdivision — an up-and-coming Indian neighbourhood where every street is named after a different mango variety.</p>
+  <p>Founded in 2026 by Bhai John Muhammad — a man whose name has confused four world religions, two ex-wives, and the Niagara Region zoning board — we proudly serve the local Sikh community, the regional Sikh-curious community, and approximately 14 people who are absolutely just here for the buffet.</p>
+</section>
+
+<!-- PRAY, EAT, WORK -->
+<section class="signpost">
+  <div class="section-label">A Complete Lifestyle Solution</div>
+  <h2>Pray, Eat, Work — All On The Same Property</h2>
+  <div class="signpost-grid">
+    <div>
+      <img src="tims-attached.png" alt="John Muhammad's with the Tim Hortons attached directly to the building" class="photo">
+      <div class="photo-caption">The Gurudwara and the Tim Hortons share a wall, a roof, and a HVAC system.</div>
+    </div>
+    <div>
+      <p style="font-size:16px;">Why drive across town when you can do everything in one parking lot? Our 2026 Tim Hortons partnership wasn't just about beverages — they built one <em>directly attached</em> to the Gurudwara.</p>
+      <p style="font-size:15px;color:var(--gold-bright);line-height:1.9;">→ <strong>PRAY</strong> at morning Nitnem<br>→ <strong>EAT</strong> on the floor in bare feet<br>→ <strong>WORK</strong> your shift at Tim Hortons just steps away</p>
+      <p style="font-size:14px;font-style:italic;color:rgba(244,234,213,0.75);">Approximately 60% of our congregation is also employed at the adjacent Tim Hortons. Auntie Preet has scheduling authority over both.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: SAMOSA GAME -->
+<section class="game-section">
+  <div class="section-label">Now Available · Free To Play</div>
+  <h2>John Muhammad's New Phone Game!</h2>
+  <p>That's right — Bhai John Muhammad has personally launched his very first mobile game. After two unsuccessful careers, four religions, and one Tim Hortons partnership, he is now also a video game developer.</p>
+  <p>The premise is simple. The temple door opens. Whack the soap, the shower, the bathtub, the deodorant, the loofah, the toothbrush, the bidet, the mouthwash. Whack everything you see — <strong>except the samosa.</strong> That one is John's. That one is sacred. Touch it and there will be consequences.</p>
+  <p style="font-style:italic;color:var(--gold-bright);">Also: do not whack John Muhammad himself. He has feelings. And, allegedly, body odour.</p>
+  <a href="samosa_game.html" class="game-cta">▶ PLAY NOW</a>
+</section>
+
+<!-- DAILY PARKING LOT FREE BUFFET -->
+<section class="picnic">
+  <div class="section-label">Photo of the Week</div>
+  <h2>The Daily Parking Lot Free Buffet</h2>
+  <p style="max-width:720px;margin:0 auto;">Every afternoon at 3:47 PM sharp, weather permitting (and on several days when it absolutely was not), the Sangat gathers in the south parking lot. Pictured: 247 souls, 12kg of dal, 3 parking spots used, 0 permits acquired.</p>
+  <div class="picnic-frame">
+    <img src="langar-picnic.png" alt="Hundreds of Sikh worshippers eating in the parking lot">
+  </div>
+  <div class="photo-caption">Photo by Auntie Preet's nephew Harman, who is between jobs.</div>
+</section>
+
+<!-- BYLAW EXCHANGE -->
+<section>
+  <div class="section-label">Public Records</div>
+  <h2>Notice From The City</h2>
+
+  <div class="notice">
+    <strong>NOTICE OF VIOLATION №&nbsp;2026-1118</strong>
+    <span class="date">NOV 18, 2026</span>
+    <br><br>
+    Mr. Muhammad — Approximately two hundred and forty-seven (247) persons were observed dining in the parking lot on Tuesday. This is the eleventh such notice issued. The City is prepared to escalate.
+    <span class="stamp">FINAL WARNING</span>
+  </div>
+
+  <div class="notice">
+    <strong>RESPONSE FROM JOHN MUHAMMAD'S</strong>
+    <span class="date">NOV 22, 2026</span>
+    <br><br>
+    Dear City — Please find enclosed a Tim Hortons gift card in the amount of $25 and our sincere invitation for the Bylaw Enforcement team to attend our Daily Parking Lot Free Buffet at their convenience. We will reserve a tarp.<br><br>
+    Auntie Preet says hello, and that she remembers your mother from Welland.<br><br>
+    — Bhai John Muhammad
+  </div>
+
+  <div class="notice">
+    <strong>FROM: CITY OF THOROLD</strong>
+    <span class="date">NOV 25, 2026</span>
+    <br><br>
+    Mr. Muhammad — The matter has been considered closed.
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu">
+  <div class="section-label">Today's Menu</div>
+  <h2>The Free Buffet</h2>
+  <p>Eaten on the floor in bare feet, as God intended. Please remove your shoes, cover your head, sit cross-legged, and absolutely do not ask if we can heat up the dal in a microwave. We do not have a microwave. We have a tandoor and the will of God.</p>
+  <ul class="menu-list">
+    <li><span class="item">Dal Makhani <small>simmered for 24 hrs by Auntie Manjit, who refuses to leave</small></span><span class="dots"></span><span class="price-tag">FREE</span></li>
+    <li><span class="item">Roti (unlimited) <small>limit 4 per person, do not test us</small></span><span class="dots"></span><span class="price-tag">FREE</span></li>
+    <li><span class="item">Chai <small>strong enough to file a workplace complaint</small></span><span class="dots"></span><span class="price-tag">FREE</span></li>
+    <li><span class="item">Poutine <small>added 2026 to remain Canadian-compliant</small></span><span class="dots"></span><span class="price-tag">FREE</span></li>
+    <li><span class="item">Timbits® <small>per Tim Hortons partnership clause 14(b)(iii)</small></span><span class="dots"></span><span class="price-tag">FREE</span></li>
+    <li><span class="item">A second helping of poutine <small>see "JAIL" sign in parking lot</small></span><span class="dots"></span><span class="price-tag">$8.50</span></li>
+    <li><span class="item">A negative comment about the saag <small>see "Auntie Preet's Other JAIL"</small></span><span class="dots"></span><span class="price-tag">$425.00</span></li>
+  </ul>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="section-label">Google Reviews ★ 4.2</div>
+  <h2>What People Are Saying</h2>
+
+  <div class="review">
+    <div class="stars">★★★★★</div>
+    <div class="review-text">"Came for cousin's wedding, stayed for the dal. Got married myself by accident on the way out. Auntie Preet says I owe her $200 for the hall. Will return."</div>
+    <div class="reviewer">— SUKHWINDER BRAR, ST. CATHARINES</div>
+  </div>
+
+  <div class="review">
+    <div class="stars">★★★★★</div>
+    <div class="review-text">"My uncle was placed in the JAIL room for going back for thirds. He says it was very clean and the chai was excellent. He has not yet been released."</div>
+    <div class="reviewer">— HARMAN GILL, NIAGARA FALLS</div>
+  </div>
+
+  <div class="review">
+    <div class="stars">★★★★★</div>
+    <div class="review-text">"Best parking lot Free Buffet in the Niagara region. The Welland one is a joke compared to this. Tell Auntie Preet that Manjit Kaur from the south side says hello."</div>
+    <div class="reviewer">— MANJIT KAUR, THOROLD</div>
+  </div>
+
+  <div class="review">
+    <div class="stars">★★★★★</div>
+    <div class="review-text">"Pastor-Imam-Granthi Dave Gill played 'Tunak Tunak Tun' at my daughter's Anand Karaj. Five stars. Mother-in-law is still upset, which I also consider five stars."</div>
+    <div class="reviewer">— RAJINDER DHILLON, BRAMPTON</div>
+  </div>
+
+  <div class="review bad">
+    <div class="stars">★<span class="empty">★★★★</span></div>
+    <div class="review-text">"Spent 20 minutes at the drive-thru speaker trying to figure out what the hell they were saying. I ordered a double-double, got a samosa and a Boston cream donut. Both were terrible. Will not return."</div>
+    <div class="reviewer">— MOHAMMED VISCA, NIAGARA REGION</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="section-label">Visit Us</div>
+  <h2>Plan Your Visit</h2>
+  <div class="address">
+    <strong style="color:var(--gold-bright);font-size:19px;">John Muhammad's Gurudwara</strong><br>
+    1422 Mango Lassi Lane<br>
+    Rolling New Delhi · Thorold, ON<br><br>
+    <span style="color:var(--gold);">(905) 555-BUFFET</span>
+  </div>
+  <p style="font-size:13px;color:rgba(244,234,213,0.6);"><em>Daily Parking Lot Free Buffet: 3:47 PM, rain or shine.<br>Closed Diwali (we're tired).</em></p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="logo.png" alt="JM logo" class="footer-logo">
+  <small>
+    Fully fictional establishment. Not affiliated with any actual gurudwara, banquet hall, world religion, beverage corporation, or man named John Muhammad. The Tim Hortons partnership is also made up.
+  </small>
+  <small style="margin-top:14px;font-style:italic;">© 2026 JM Holdings (Niagara) Inc. · Please don't go in either JAIL.</small>
+</footer>
+
+<!-- GAME POPUP - slide-in from bottom-right -->
+<div class="game-toast" id="gamePopup">
+  <button class="game-toast-close" onclick="closeGamePopup()" aria-label="Close">×</button>
+  <div class="game-toast-inner">
+    <div class="game-toast-art">🥟</div>
+    <div class="game-toast-text">
+      <div class="game-toast-eyebrow">Now Available</div>
+      <div class="game-toast-title">John Muhammad's New Phone Game!</div>
+      <div class="game-toast-blurb">Whack everything in the temple — soap, shower, deodorant. Just not the samosa.</div>
+      <a href="samosa_game.html" class="game-toast-cta">PLAY NOW ▶</a>
+    </div>
+  </div>
+</div>
+
+<!-- TIM SHOP POPUP -->
+<div class="popup-overlay" id="timPopup">
+  <div class="popup">
+    <button class="popup-close" onclick="closePopup()" aria-label="Close">×</button>
+    <img src="tim-shop.png" alt="Tim Hortons branded turbans">
+    <h3>Get Tim Hortons Swag Now!</h3>
+    <p>Officially licensed Tim Hortons® turbans, dastars, and patkas. Available in the lobby for $24.99.<br>Donut patch sold separately.</p>
+    <button class="popup-cta" onclick="closePopup()">Shop The Drip</button>
+  </div>
+</div>
+
+<!-- PETERBILT POPUP -->
+<div class="popup-overlay" id="peterbiltPopup">
+  <div class="popup" style="border-color:#1a1612;padding:0;overflow:hidden;">
+    <button class="popup-close" onclick="closePeterbiltPopup()" aria-label="Close" style="color:#fff;background:rgba(0,0,0,0.5);border-radius:50%;width:32px;height:32px;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;z-index:2;">×</button>
+    <img src="rollover-ready-popup.png" alt="Rollover Ready Peterbilt — Engineered for Every Angle" style="width:100%;display:block;border:none;margin-bottom:0;">
+    <div style="background:#1a1612;color:#fff;padding:18px 22px;text-align:center;">
+      <div style="font-family:Georgia,serif;font-size:11px;color:#888;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Sponsored Content</div>
+      <p style="color:#cdd2d6;font-size:14px;font-style:normal;margin-bottom:14px;">The truck that refuses to quit — even when everything goes sideways. Or completely upside down.</p>
+      <a href="rollover-ready.html" class="popup-cta" style="background:#c8102e;">Learn More</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var gameShown = false;
+    var timShown = false;
+    var peterbiltShown = false;
+    function checkScroll() {
+      var scrolled = window.scrollY || window.pageYOffset;
+      var docHeight = document.body.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) return;
+      var ratio = scrolled / docHeight;
+      // Game toast slides in at 10% scroll (non-blocking, lives in corner)
+      if (!gameShown && ratio >= 0.10) {
+        document.getElementById('gamePopup').classList.add('show');
+        gameShown = true;
+      }
+      // Tim Hortons popup at 35% scroll (full-screen modal)
+      if (!timShown && ratio >= 0.35) {
+        document.getElementById('timPopup').classList.add('show');
+        timShown = true;
+      }
+      // Peterbilt popup at 70% scroll, only after Tim has been dismissed
+      if (timShown && !peterbiltShown && ratio >= 0.70) {
+        if (!document.getElementById('timPopup').classList.contains('show')) {
+          document.getElementById('peterbiltPopup').classList.add('show');
+          peterbiltShown = true;
+        }
+      }
+      if (gameShown && timShown && peterbiltShown) {
+        window.removeEventListener('scroll', checkScroll);
+      }
+    }
+    window.addEventListener('scroll', checkScroll, { passive: true });
+  })();
+  function closePopup() {
+    document.getElementById('timPopup').classList.remove('show');
+  }
+  function closeGamePopup() {
+    document.getElementById('gamePopup').classList.remove('show');
+  }
+  function closePeterbiltPopup() {
+    document.getElementById('peterbiltPopup').classList.remove('show');
+  }
+</script>
+
+<!-- JM NEWS TICKER -->
+<div class="jm-ticker">
+  <div class="jm-ticker-label">JM NEWS</div>
+  <div class="jm-ticker-track" id="jmTickerTrack"></div>
+</div>
+
+<script>
+  (function() {
+    var headlines = [
+      "Homesense is running out of towels for some reason",
+      "Peterbilt unveils Rollover Ready™ — new transport truck with chassis on the bottom AND wheels on the roof, drives upside down after flipping",
+      "Shower demolition companies report unprecedented backlogs, crews working overtime regionwide"
+    ];
+    var track = document.getElementById('jmTickerTrack');
+    var html = headlines.map(function(h) {
+      return '<span class="jm-ticker-item">' + h + '</span>';
+    }).join('');
+    // duplicate for seamless loop
+    track.innerHTML = html + html;
+  })();
+</script>
+
+</body>
+</html>
